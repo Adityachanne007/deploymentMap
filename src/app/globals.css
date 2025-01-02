@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-marker-label {
+  background: white;
+  border-radius: 8px;
+  padding: 2px 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.custom-label {
+  background-color: rgba(0, 0, 0, 0.7); /* Black semi-transparent background */
+  padding: 2px 4px; /* Padding around the label */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 6px; /* Label font size */
+  color: #ffffff; /* White text */
+  transform: translateY(-25px); /* Slightly lift the label for clarity */
+}
+
+/* Add this to your globals.css */
+
+.marker-tooltip {
+  position: absolute;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #333;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+}
+
+/* Optional: Add a small arrow at the bottom of the tooltip */
+.marker-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+}
+
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.custom-checkbox.checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
