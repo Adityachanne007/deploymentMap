@@ -31,6 +31,7 @@ interface Location {
   dtc: string;
   swh: string;
   point_code: string;
+  internalComments: string;
 }
 
 interface TechnicianLocation {
@@ -76,7 +77,11 @@ const TECHNICIAN_OPTIONS = [
   "Maxime Volta",
   "Alejandro Sosa",
   "Adem Mezzogh",
-  "Seydou Maregadk"
+  "Seydou Maregadk",
+  "Yoann Kolb",
+  "Jeremy Escot",
+  "Elfais Said",
+  "Youssef Bahma"
 ].sort();
 
 const PRIORITY_COLORS = {
@@ -347,6 +352,7 @@ export default function AirtableMap() {
             : "N/A",
           swh: record.fields["Store Working hours"] || "N/A",
           point_code: record.fields["Point Code"] || "N/A",
+          internalComments: record.fields['Internal comments WOs'] || "No internal comments",
         };
       });
   
@@ -521,6 +527,7 @@ export default function AirtableMap() {
           </p>
           <p style="margin: 0 0 8px; font-weight: bold;">Technician: <span style="font-weight: normal;">${location.technician}</span></p>
           <p style="margin: 0 0 8px; font-weight: bold;">Planned Date: <span style="font-weight: normal;">${formattedDate}</span></p>
+          <p style="margin: 0 0 8px; font-weight: bold;">Internal Comments: <span style="font-weight: normal;">${location.internalComments}</span></p>
           <p style="margin: 0; font-weight: bold;">Store Opening Hours: <span style="font-weight: normal;">${location.swh}</span></p>
         </div>
       `;
@@ -590,6 +597,8 @@ export default function AirtableMap() {
             </p>
             <p style="margin: 6px 0;"><strong style="color:#555;">Technician:</strong> <span style="margin-left: 5px; color: #000;">${location.technician}</span></p>
             <p style="margin: 6px 0;"><strong style="color:#555;">Planned Date:</strong> <span style="margin-left: 5px; color: #000;">${formattedDate}</span></p>
+             <p style="margin: 6px 0;"><strong style="color:#555;">Internal Comments:</strong> <span style="margin-left: 5px; color: #000;">${location.internalComments}</span></p>
+
             <p style="margin: 6px 0;"><strong style="color:#555;">Intervention Deadline:</strong> <span style="font-weight: normal; color: ${Number(location.dtc) < 0 ? '#d10000' : '#333'};">
               ${location.dtc} Days
             </span></p>
@@ -789,7 +798,7 @@ export default function AirtableMap() {
 return (
   <Card className="bg-white">
     <CardHeader>
-      <CardTitle>Deployment Map</CardTitle>
+      <CardTitle>Work Orders and Technicians Map</CardTitle>
     </CardHeader>
     <CardContent>
       {/* Filters Section */}
